@@ -1,0 +1,9 @@
+{
+	"dependencies": {
+		"tableutils": "0.2.0"
+	},
+	"package": {
+		"name": "stats",
+		"version": "0.1.0"
+	}
+}
