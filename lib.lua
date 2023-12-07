@@ -2,6 +2,17 @@ require ".luam"
 
 use("tableutils")
 
+local Z = {
+    Z_80 = 1.281,
+    Z_90 = 1.645,
+    Z_95 = 1.96,
+    Z_99 = 2.576,
+    Z_999 = 3.291,
+    Z_9e4 = 3.891, -- 99.99%
+    Z_9e5 = 4.417, -- 99.999%,
+    Z_9e10 = 6.467 -- 99.9999999999%
+}
+
 -- Warning: WILL sort your table.
 local function median(dataset)
     table.sort(dataset)
@@ -48,12 +59,8 @@ end
 
 -- {1, 2, 3, 4, 5, 6, 7, 8, 9}
 local function IQR(dataset)
-    if #dataset % 2 == 0 then
-
-    else
-        local step = math.ceil(#dataset / 4)
-        return dataset[#dataset - step] - dataset[step]
-    end
+    local Q1, _, Q3 = quartiles(dataset)
+    return Q3 - Q1
 end
 
 local function max(dataset)
@@ -139,6 +146,7 @@ local function summarize(dataset)
         Q1 = Q1,
         Q2 = Q2,
         Q3 = Q3,
+        IQR = Q3 - Q1,
         median = Q2,
         min = min,
         max = max,
@@ -154,8 +162,10 @@ return {
     stdDev = stdDev,
     stdErr = stdErr,
     quartiles = quartiles,
+    IQR = IQR,
     median = median,
     extrema = extrema,
     mode = mode,
-    summarize = summarize
+    summarize = summarize,
+    Z = Z
 }

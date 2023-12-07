@@ -3,7 +3,8 @@
 		"tableutils": "0.2.0"
 	},
 	"package": {
+		"github": "https://github.com/Git-Monke/stats",
 		"name": "stats",
-		"version": "0.1.0"
+		"version": "0.2.0"
 	}
 }
